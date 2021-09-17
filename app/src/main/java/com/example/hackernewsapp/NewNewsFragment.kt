@@ -16,6 +16,8 @@ class NewNewsFragment : Fragment() {
     private var _binding: FragmentNewNewsBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewPager2: ViewPager2
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,11 +29,8 @@ class NewNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        val newsTabLayout = binding.newsTabLayout//view?.findViewById<TabLayout>(R.id.newsTabLayout)
-//        val newsViewPager = binding.newsViewPager //view?.findViewById<ViewPager2>(R.id.newsViewPager)
-
-        binding.newsViewPager.adapter = PageAdapter(this)
+        viewPager2 = binding.newsViewPager
+        viewPager2.adapter = PageAdapter(this)
 
         TabLayoutMediator(binding.newsTabLayout, binding.newsViewPager) {tab, position ->
             val tabName = when(position) {
@@ -44,8 +43,8 @@ class NewNewsFragment : Fragment() {
         }.attach()
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = NewNewsFragment()
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

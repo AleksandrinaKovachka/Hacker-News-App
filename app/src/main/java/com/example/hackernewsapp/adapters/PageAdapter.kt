@@ -1,12 +1,14 @@
 package com.example.hackernewsapp.adapters
 
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.hackernewsapp.ArticleFragment
 import com.example.hackernewsapp.NewNewsFragment
-import com.example.hackernewsapp.TheBestNewsFragment
-import com.example.hackernewsapp.TopNewsFragment
+
+const val PAGER_POSITION = "Position"
 
 class PageAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -15,11 +17,11 @@ class PageAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when(position) {
-            0 -> NewNewsFragment.newInstance()
-            1 -> TopNewsFragment.newInstance()
-            2 -> TheBestNewsFragment.newInstance()
-            else -> NewNewsFragment.newInstance()
+        val fragment = ArticleFragment()
+        fragment.arguments = Bundle().apply {
+            putInt(PAGER_POSITION, position)
         }
+
+        return fragment
     }
 }

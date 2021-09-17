@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.hackernewsapp.NewNewsFragment"
+        android:label="@string/new_news" />
+
+    <fragment
+        android:id="@+id/navigation_search_news"
+        android:name="com.example.hackernewsapp.SearchNewsFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search_news" />
+
+    <fragment
+        android:id="@+id/navigation_favorite_news"
+        android:name="com.example.hackernewsapp.FavoriteNewsFragment"
+        android:label="@string/favorite"
+        tools:layout="@layout/fragment_favorite_news" />
+</navigation>
